@@ -1,0 +1,34 @@
+events:
+    add(addedElement)
+    move(direction, element, from, to)
+
+config:
+    hide: {
+        elementType: [...attributeNames]
+    },
+    class: {
+        elementType: 'className'
+    },
+    action: {
+        up: '' Up element
+        down: '' Down element
+        class: '' Action class.
+        style: '' Action style
+    },
+    additional: {
+        inputs: {
+
+        }
+        button: {
+        }
+    }
+
+
+import: [
+    {
+        type: '',
+        ...
+    }
+
+
+]
