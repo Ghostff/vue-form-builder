@@ -300,6 +300,797 @@ module.exports = g;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+const countries = [{
+  name: 'Afghanistan',
+  value: 'AF'
+}, {
+  name: 'land Islands',
+  value: 'AX'
+}, {
+  name: 'Albania',
+  value: 'AL'
+}, {
+  name: 'Algeria',
+  value: 'DZ'
+}, {
+  name: 'American Samoa',
+  value: 'AS'
+}, {
+  name: 'AndorrA',
+  value: 'AD'
+}, {
+  name: 'Angola',
+  value: 'AO'
+}, {
+  name: 'Anguilla',
+  value: 'AI'
+}, {
+  name: 'Antarctica',
+  value: 'AQ'
+}, {
+  name: 'Antigua and Barbuda',
+  value: 'AG'
+}, {
+  name: 'Argentina',
+  value: 'AR'
+}, {
+  name: 'Armenia',
+  value: 'AM'
+}, {
+  name: 'Aruba',
+  value: 'AW'
+}, {
+  name: 'Australia',
+  value: 'AU'
+}, {
+  name: 'Austria',
+  value: 'AT'
+}, {
+  name: 'Azerbaijan',
+  value: 'AZ'
+}, {
+  name: 'Bahamas',
+  value: 'BS'
+}, {
+  name: 'Bahrain',
+  value: 'BH'
+}, {
+  name: 'Bangladesh',
+  value: 'BD'
+}, {
+  name: 'Barbados',
+  value: 'BB'
+}, {
+  name: 'Belarus',
+  value: 'BY'
+}, {
+  name: 'Belgium',
+  value: 'BE'
+}, {
+  name: 'Belize',
+  value: 'BZ'
+}, {
+  name: 'Benin',
+  value: 'BJ'
+}, {
+  name: 'Bermuda',
+  value: 'BM'
+}, {
+  name: 'Bhutan',
+  value: 'BT'
+}, {
+  name: 'Bolivia',
+  value: 'BO'
+}, {
+  name: 'Bosnia and Herzegovina',
+  value: 'BA'
+}, {
+  name: 'Botswana',
+  value: 'BW'
+}, {
+  name: 'Bouvet Island',
+  value: 'BV'
+}, {
+  name: 'Brazil',
+  value: 'BR'
+}, {
+  name: 'British Indian Ocean Territory',
+  value: 'IO'
+}, {
+  name: 'Brunei Darussalam',
+  value: 'BN'
+}, {
+  name: 'Bulgaria',
+  value: 'BG'
+}, {
+  name: 'Burkina Faso',
+  value: 'BF'
+}, {
+  name: 'Burundi',
+  value: 'BI'
+}, {
+  name: 'Cambodia',
+  value: 'KH'
+}, {
+  name: 'Cameroon',
+  value: 'CM'
+}, {
+  name: 'Canada',
+  value: 'CA'
+}, {
+  name: 'Cape Verde',
+  value: 'CV'
+}, {
+  name: 'Cayman Islands',
+  value: 'KY'
+}, {
+  name: 'Central African Republic',
+  value: 'CF'
+}, {
+  name: 'Chad',
+  value: 'TD'
+}, {
+  name: 'Chile',
+  value: 'CL'
+}, {
+  name: 'China',
+  value: 'CN'
+}, {
+  name: 'Christmas Island',
+  value: 'CX'
+}, {
+  name: 'Cocos (Keeling) Islands',
+  value: 'CC'
+}, {
+  name: 'Colombia',
+  value: 'CO'
+}, {
+  name: 'Comoros',
+  value: 'KM'
+}, {
+  name: 'Congo',
+  value: 'CG'
+}, {
+  name: 'Congo, The Democratic Republic of the',
+  value: 'CD'
+}, {
+  name: 'Cook Islands',
+  value: 'CK'
+}, {
+  name: 'Costa Rica',
+  value: 'CR'
+}, {
+  name: 'Cote D"Ivoire',
+  value: 'CI'
+}, {
+  name: 'Croatia',
+  value: 'HR'
+}, {
+  name: 'Cuba',
+  value: 'CU'
+}, {
+  name: 'Cyprus',
+  value: 'CY'
+}, {
+  name: 'Czech Republic',
+  value: 'CZ'
+}, {
+  name: 'Denmark',
+  value: 'DK'
+}, {
+  name: 'Djibouti',
+  value: 'DJ'
+}, {
+  name: 'Dominica',
+  value: 'DM'
+}, {
+  name: 'Dominican Republic',
+  value: 'DO'
+}, {
+  name: 'Ecuador',
+  value: 'EC'
+}, {
+  name: 'Egypt',
+  value: 'EG'
+}, {
+  name: 'El Salvador',
+  value: 'SV'
+}, {
+  name: 'Equatorial Guinea',
+  value: 'GQ'
+}, {
+  name: 'Eritrea',
+  value: 'ER'
+}, {
+  name: 'Estonia',
+  value: 'EE'
+}, {
+  name: 'Ethiopia',
+  value: 'ET'
+}, {
+  name: 'Falkland Islands (Malvinas)',
+  value: 'FK'
+}, {
+  name: 'Faroe Islands',
+  value: 'FO'
+}, {
+  name: 'Fiji',
+  value: 'FJ'
+}, {
+  name: 'Finland',
+  value: 'FI'
+}, {
+  name: 'France',
+  value: 'FR'
+}, {
+  name: 'French Guiana',
+  value: 'GF'
+}, {
+  name: 'French Polynesia',
+  value: 'PF'
+}, {
+  name: 'French Southern Territories',
+  value: 'TF'
+}, {
+  name: 'Gabon',
+  value: 'GA'
+}, {
+  name: 'Gambia',
+  value: 'GM'
+}, {
+  name: 'Georgia',
+  value: 'GE'
+}, {
+  name: 'Germany',
+  value: 'DE'
+}, {
+  name: 'Ghana',
+  value: 'GH'
+}, {
+  name: 'Gibraltar',
+  value: 'GI'
+}, {
+  name: 'Greece',
+  value: 'GR'
+}, {
+  name: 'Greenland',
+  value: 'GL'
+}, {
+  name: 'Grenada',
+  value: 'GD'
+}, {
+  name: 'Guadeloupe',
+  value: 'GP'
+}, {
+  name: 'Guam',
+  value: 'GU'
+}, {
+  name: 'Guatemala',
+  value: 'GT'
+}, {
+  name: 'Guernsey',
+  value: 'GG'
+}, {
+  name: 'Guinea',
+  value: 'GN'
+}, {
+  name: 'Guinea-Bissau',
+  value: 'GW'
+}, {
+  name: 'Guyana',
+  value: 'GY'
+}, {
+  name: 'Haiti',
+  value: 'HT'
+}, {
+  name: 'Heard Island and Mcdonald Islands',
+  value: 'HM'
+}, {
+  name: 'Holy See (Vatican City State)',
+  value: 'VA'
+}, {
+  name: 'Honduras',
+  value: 'HN'
+}, {
+  name: 'Hong Kong',
+  value: 'HK'
+}, {
+  name: 'Hungary',
+  value: 'HU'
+}, {
+  name: 'Iceland',
+  value: 'IS'
+}, {
+  name: 'India',
+  value: 'IN'
+}, {
+  name: 'Indonesia',
+  value: 'ID'
+}, {
+  name: 'Iran, Islamic Republic Of',
+  value: 'IR'
+}, {
+  name: 'Iraq',
+  value: 'IQ'
+}, {
+  name: 'Ireland',
+  value: 'IE'
+}, {
+  name: 'Isle of Man',
+  value: 'IM'
+}, {
+  name: 'Israel',
+  value: 'IL'
+}, {
+  name: 'Italy',
+  value: 'IT'
+}, {
+  name: 'Jamaica',
+  value: 'JM'
+}, {
+  name: 'Japan',
+  value: 'JP'
+}, {
+  name: 'Jersey',
+  value: 'JE'
+}, {
+  name: 'Jordan',
+  value: 'JO'
+}, {
+  name: 'Kazakhstan',
+  value: 'KZ'
+}, {
+  name: 'Kenya',
+  value: 'KE'
+}, {
+  name: 'Kiribati',
+  value: 'KI'
+}, {
+  name: 'Korea, Democratic People"S Republic of',
+  value: 'KP'
+}, {
+  name: 'Korea, Republic of',
+  value: 'KR'
+}, {
+  name: 'Kuwait',
+  value: 'KW'
+}, {
+  name: 'Kyrgyzstan',
+  value: 'KG'
+}, {
+  name: 'Lao People"S Democratic Republic',
+  value: 'LA'
+}, {
+  name: 'Latvia',
+  value: 'LV'
+}, {
+  name: 'Lebanon',
+  value: 'LB'
+}, {
+  name: 'Lesotho',
+  value: 'LS'
+}, {
+  name: 'Liberia',
+  value: 'LR'
+}, {
+  name: 'Libyan Arab Jamahiriya',
+  value: 'LY'
+}, {
+  name: 'Liechtenstein',
+  value: 'LI'
+}, {
+  name: 'Lithuania',
+  value: 'LT'
+}, {
+  name: 'Luxembourg',
+  value: 'LU'
+}, {
+  name: 'Macao',
+  value: 'MO'
+}, {
+  name: 'Macedonia, The Former Yugoslav Republic of',
+  value: 'MK'
+}, {
+  name: 'Madagascar',
+  value: 'MG'
+}, {
+  name: 'Malawi',
+  value: 'MW'
+}, {
+  name: 'Malaysia',
+  value: 'MY'
+}, {
+  name: 'Maldives',
+  value: 'MV'
+}, {
+  name: 'Mali',
+  value: 'ML'
+}, {
+  name: 'Malta',
+  value: 'MT'
+}, {
+  name: 'Marshall Islands',
+  value: 'MH'
+}, {
+  name: 'Martinique',
+  value: 'MQ'
+}, {
+  name: 'Mauritania',
+  value: 'MR'
+}, {
+  name: 'Mauritius',
+  value: 'MU'
+}, {
+  name: 'Mayotte',
+  value: 'YT'
+}, {
+  name: 'Mexico',
+  value: 'MX'
+}, {
+  name: 'Micronesia, Federated States of',
+  value: 'FM'
+}, {
+  name: 'Moldova, Republic of',
+  value: 'MD'
+}, {
+  name: 'Monaco',
+  value: 'MC'
+}, {
+  name: 'Mongolia',
+  value: 'MN'
+}, {
+  name: 'Montenegro',
+  value: 'ME'
+}, {
+  name: 'Montserrat',
+  value: 'MS'
+}, {
+  name: 'Morocco',
+  value: 'MA'
+}, {
+  name: 'Mozambique',
+  value: 'MZ'
+}, {
+  name: 'Myanmar',
+  value: 'MM'
+}, {
+  name: 'Namibia',
+  value: 'NA'
+}, {
+  name: 'Nauru',
+  value: 'NR'
+}, {
+  name: 'Nepal',
+  value: 'NP'
+}, {
+  name: 'Netherlands',
+  value: 'NL'
+}, {
+  name: 'Netherlands Antilles',
+  value: 'AN'
+}, {
+  name: 'New Caledonia',
+  value: 'NC'
+}, {
+  name: 'New Zealand',
+  value: 'NZ'
+}, {
+  name: 'Nicaragua',
+  value: 'NI'
+}, {
+  name: 'Niger',
+  value: 'NE'
+}, {
+  name: 'Nigeria',
+  value: 'NG'
+}, {
+  name: 'Niue',
+  value: 'NU'
+}, {
+  name: 'Norfolk Island',
+  value: 'NF'
+}, {
+  name: 'Northern Mariana Islands',
+  value: 'MP'
+}, {
+  name: 'Norway',
+  value: 'NO'
+}, {
+  name: 'Oman',
+  value: 'OM'
+}, {
+  name: 'Pakistan',
+  value: 'PK'
+}, {
+  name: 'Palau',
+  value: 'PW'
+}, {
+  name: 'Palestinian Territory, Occupied',
+  value: 'PS'
+}, {
+  name: 'Panama',
+  value: 'PA'
+}, {
+  name: 'Papua New Guinea',
+  value: 'PG'
+}, {
+  name: 'Paraguay',
+  value: 'PY'
+}, {
+  name: 'Peru',
+  value: 'PE'
+}, {
+  name: 'Philippines',
+  value: 'PH'
+}, {
+  name: 'Pitcairn',
+  value: 'PN'
+}, {
+  name: 'Poland',
+  value: 'PL'
+}, {
+  name: 'Portugal',
+  value: 'PT'
+}, {
+  name: 'Puerto Rico',
+  value: 'PR'
+}, {
+  name: 'Qatar',
+  value: 'QA'
+}, {
+  name: 'Reunion',
+  value: 'RE'
+}, {
+  name: 'Romania',
+  value: 'RO'
+}, {
+  name: 'Russian Federation',
+  value: 'RU'
+}, {
+  name: 'RWANDA',
+  value: 'RW'
+}, {
+  name: 'Saint Helena',
+  value: 'SH'
+}, {
+  name: 'Saint Kitts and Nevis',
+  value: 'KN'
+}, {
+  name: 'Saint Lucia',
+  value: 'LC'
+}, {
+  name: 'Saint Pierre and Miquelon',
+  value: 'PM'
+}, {
+  name: 'Saint Vincent and the Grenadines',
+  value: 'VC'
+}, {
+  name: 'Samoa',
+  value: 'WS'
+}, {
+  name: 'San Marino',
+  value: 'SM'
+}, {
+  name: 'Sao Tome and Principe',
+  value: 'ST'
+}, {
+  name: 'Saudi Arabia',
+  value: 'SA'
+}, {
+  name: 'Senegal',
+  value: 'SN'
+}, {
+  name: 'Serbia',
+  value: 'RS'
+}, {
+  name: 'Seychelles',
+  value: 'SC'
+}, {
+  name: 'Sierra Leone',
+  value: 'SL'
+}, {
+  name: 'Singapore',
+  value: 'SG'
+}, {
+  name: 'Slovakia',
+  value: 'SK'
+}, {
+  name: 'Slovenia',
+  value: 'SI'
+}, {
+  name: 'Solomon Islands',
+  value: 'SB'
+}, {
+  name: 'Somalia',
+  value: 'SO'
+}, {
+  name: 'South Africa',
+  value: 'ZA'
+}, {
+  name: 'South Georgia and the South Sandwich Islands',
+  value: 'GS'
+}, {
+  name: 'Spain',
+  value: 'ES'
+}, {
+  name: 'Sri Lanka',
+  value: 'LK'
+}, {
+  name: 'Sudan',
+  value: 'SD'
+}, {
+  name: 'Suriname',
+  value: 'SR'
+}, {
+  name: 'Svalbard and Jan Mayen',
+  value: 'SJ'
+}, {
+  name: 'Swaziland',
+  value: 'SZ'
+}, {
+  name: 'Sweden',
+  value: 'SE'
+}, {
+  name: 'Switzerland',
+  value: 'CH'
+}, {
+  name: 'Syrian Arab Republic',
+  value: 'SY'
+}, {
+  name: 'Taiwan, Province of China',
+  value: 'TW'
+}, {
+  name: 'Tajikistan',
+  value: 'TJ'
+}, {
+  name: 'Tanzania, United Republic of',
+  value: 'TZ'
+}, {
+  name: 'Thailand',
+  value: 'TH'
+}, {
+  name: 'Timor-Leste',
+  value: 'TL'
+}, {
+  name: 'Togo',
+  value: 'TG'
+}, {
+  name: 'Tokelau',
+  value: 'TK'
+}, {
+  name: 'Tonga',
+  value: 'TO'
+}, {
+  name: 'Trinidad and Tobago',
+  value: 'TT'
+}, {
+  name: 'Tunisia',
+  value: 'TN'
+}, {
+  name: 'Turkey',
+  value: 'TR'
+}, {
+  name: 'Turkmenistan',
+  value: 'TM'
+}, {
+  name: 'Turks and Caicos Islands',
+  value: 'TC'
+}, {
+  name: 'Tuvalu',
+  value: 'TV'
+}, {
+  name: 'Uganda',
+  value: 'UG'
+}, {
+  name: 'Ukraine',
+  value: 'UA'
+}, {
+  name: 'United Arab Emirates',
+  value: 'AE'
+}, {
+  name: 'United Kingdom',
+  value: 'GB'
+}, {
+  name: 'United States',
+  value: 'US'
+}, {
+  name: 'United States Minor Outlying Islands',
+  value: 'UM'
+}, {
+  name: 'Uruguay',
+  value: 'UY'
+}, {
+  name: 'Uzbekistan',
+  value: 'UZ'
+}, {
+  name: 'Vanuatu',
+  value: 'VU'
+}, {
+  name: 'Venezuela',
+  value: 'VE'
+}, {
+  name: 'Viet Nam',
+  value: 'VN'
+}, {
+  name: 'Virgin Islands, British',
+  value: 'VG'
+}, {
+  name: 'Virgin Islands, U.S.',
+  value: 'VI'
+}, {
+  name: 'Wallis and Futuna',
+  value: 'WF'
+}, {
+  name: 'Western Sahara',
+  value: 'EH'
+}, {
+  name: 'Yemen',
+  value: 'YE'
+}, {
+  name: 'Zambia',
+  value: 'ZM'
+}, {
+  name: 'Zimbabwe',
+  value: 'ZW'
+}];
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: ['config', 'import', 'move'],
   name: "Index",
@@ -333,9 +1124,20 @@ module.exports = g;
         number: 'input',
         hidden: 'input',
         password: 'input',
+        range: 'input',
         url: 'input',
         radio: 'input',
+        checkbox: 'input',
+        textarea: 'textarea',
+        button: {
+          tag: 'button',
+          content: 'Button'
+        },
         select: {
+          select: 'select',
+          option: 'option'
+        },
+        countries: {
           select: 'select',
           option: 'option'
         }
@@ -344,7 +1146,14 @@ module.exports = g;
       defaultConfig: {
         hide: {},
         class: {
-          text: 'input'
+          select: 'input',
+          countries: 'input',
+          button: 'button',
+          textarea: 'input',
+          buttonType: {
+            span: 'span',
+            select: 'input'
+          }
         },
         action: {
           move: {
@@ -416,8 +1225,23 @@ module.exports = g;
     let size = 0;
     display.addEventListener('drop', e => {
       e.preventDefault();
-      const type = e.dataTransfer.getData('text'),
-            data = {
+      let type = e.dataTransfer.getData('text'),
+          options = null;
+
+      if (['radio', 'checkbox', 'select'].indexOf(type) >= 0) {
+        options = [{
+          name: 'Yes',
+          value: 1
+        }, {
+          name: 'No',
+          value: 0
+        }];
+      } else if (type === 'countries') {
+        options = countries;
+        type = 'select';
+      }
+
+      const data = {
         type,
         required: false,
         name: null,
@@ -432,16 +1256,17 @@ module.exports = g;
         autocomplete: null,
         min: null,
         max: null,
-        options: ['radio', 'checkbox', 'select'].indexOf(type) < 0 ? null : [{
-          name: 'Yes',
-          value: 1
-        }, {
-          name: 'No',
-          value: 0
-        }],
+        useName: true,
+        options,
         multiple: false,
         additionalAttr: [],
-        class: this.defaultConfig.class[type]
+        cols: null,
+        rows: null,
+        maxlength: null,
+        readonly: null,
+        disabled: null,
+        buttonType: 'button',
+        class: this.defaultConfig.class[type] || 'input'
       };
       this.$set(this.defaultConfig.hide, type, []);
       this.$set(this.toggle, size, false);
@@ -466,6 +1291,11 @@ module.exports = g;
     attributes(e) {
       let attr = {};
       Object.keys(e).forEach(name => {
+        // we dont want to add type="select" to select option field
+        if (name === 'type' && e.type === 'select') {
+          return;
+        }
+
         if (name === 'additionalAttr') {
           e.additionalAttr.forEach(data => {
             attr[data.name] = data.value;
@@ -474,7 +1304,7 @@ module.exports = g;
         } // dont add attributes that is null or not declared.
 
 
-        if (e[name] !== null && e[name] !== undefined && ['label', 'options'].indexOf(name) < 0) {
+        if (e[name] !== null && e[name] !== undefined && ['label', 'options', 'useName'].indexOf(name) < 0) {
           // we dont need to set a value for boolean attributes.
           // eg required doesnt need to be required="true"
           if (typeof e[name] === 'boolean') {
@@ -482,10 +1312,15 @@ module.exports = g;
               // eg: required
               attr[name] = '';
             }
-          } else {
-            // eg:  placeholder="...";
-            attr[name] = e[name];
-          }
+          } // since type is a generic attribute the most of the project relys on
+          // when we create a button we want to be able to change the type attribute
+          // without modifying the generic type, So we set the type attribute using buttonType
+          else if (name === 'buttonType') {
+              attr['type'] = e[name];
+            } else {
+              // eg:  placeholder="...";
+              attr[name] = e[name];
+            }
         }
       });
       return attr;
@@ -12842,7 +13677,7 @@ var component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_
 
 /* hot reload */
 if (false) {
-  var api = require("C:\\Users\\Public\\Documents\\Web\\FormBuilder\\node_modules\\vue-hot-reload-api\\dist\\index.js")
+  var api = require("/home/chrysu/Documents/Projects/vue-form-builder/node_modules/vue-hot-reload-api/dist/index.js")
   api.install(require('vue'))
   if (api.compatible) {
     module.hot.accept()
@@ -12911,7 +13746,7 @@ var render = function() {
                     _vm._v(_vm._s(e.label.text))
                   ]),
                   _vm._v(" "),
-                  e.type === "radio"
+                  e.type === "radio" || e.type === "checkbox"
                     ? [
                         _vm._l(e.options, function(el, index) {
                           return [
@@ -12936,9 +13771,7 @@ var render = function() {
                           ]
                         })
                       ]
-                    : _vm._e(),
-                  _vm._v(" "),
-                  e.type === "select"
+                    : e.type === "select"
                     ? [
                         _c(
                           _vm.templates[e.type].select,
@@ -12954,18 +13787,33 @@ var render = function() {
                               {
                                 key: "radio-" + i + "-" + index,
                                 tag: "component",
-                                attrs: { value: el.value }
+                                attrs: { value: e.useName ? el.value : el.name }
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\n                                    " +
                                     _vm._s(el.name) +
-                                    "\n                            "
+                                    "\n                                "
                                 )
                               ]
                             )
                           }),
                           1
+                        )
+                      ]
+                    : e.type === "button"
+                    ? [
+                        _c(
+                          _vm.templates[e.type].tag,
+                          _vm._b(
+                            {
+                              tag: "comment",
+                              domProps: { innerHTML: _vm._s("dsd") }
+                            },
+                            "comment",
+                            _vm.attributes(e),
+                            false
+                          )
                         )
                       ]
                     : [
@@ -13126,548 +13974,889 @@ var render = function() {
                       ]
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.hide[e.type].indexOf("required") < 0
+                  e.type !== "button"
                     ? [
+                        _vm.hide[e.type].indexOf("required") < 0
+                          ? [
+                              _c("label", { attrs: { for: e.name + i } }, [
+                                _vm._v("Required")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { id: e.name + i, type: "checkbox" },
+                                on: {
+                                  change: function(t) {
+                                    return (e.required = t.target.checked)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("br")
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.hide[e.type].indexOf("label") < 0
+                          ? [
+                              _c("fieldset", [
+                                _c("legend", [_vm._v("Label:")]),
+                                _vm._v(" "),
+                                _c("span", [_vm._v("Name")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "text" },
+                                  on: {
+                                    keyup: function(t) {
+                                      return (e.label.text = t.target.value)
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", [_vm._v("Class")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "text" },
+                                  on: {
+                                    keyup: function(t) {
+                                      return (e.label.class = t.target.value)
+                                    }
+                                  }
+                                })
+                              ])
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        e.type === "radio" ||
+                        e.type === "checkbox" ||
+                        e.type === "select"
+                          ? [
+                              _c(
+                                "fieldset",
+                                [
+                                  _c("legend", [_vm._v("Options:")]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: e.useName,
+                                        expression: "e.useName"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "checkbox",
+                                      id: "option-list" + i
+                                    },
+                                    domProps: {
+                                      checked: Array.isArray(e.useName)
+                                        ? _vm._i(e.useName, null) > -1
+                                        : e.useName
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = e.useName,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              _vm.$set(
+                                                e,
+                                                "useName",
+                                                $$a.concat([$$v])
+                                              )
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                e,
+                                                "useName",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
+                                          }
+                                        } else {
+                                          _vm.$set(e, "useName", $$c)
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "option-list" + i } },
+                                    [_vm._v("Use Name as value?")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(e.options, function(attr, index) {
+                                    return _c(
+                                      "div",
+                                      [
+                                        _vm.defaultConfig.additional.inputs
+                                          .type === "checkbox"
+                                          ? _c(
+                                              "input",
+                                              _vm._b(
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: attr.name,
+                                                      expression: "attr.name"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    placeholder: "Name",
+                                                    type: "checkbox"
+                                                  },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      attr.name
+                                                    )
+                                                      ? _vm._i(
+                                                          attr.name,
+                                                          null
+                                                        ) > -1
+                                                      : attr.name
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$a = attr.name,
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = null,
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            _vm.$set(
+                                                              attr,
+                                                              "name",
+                                                              $$a.concat([$$v])
+                                                            )
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            _vm.$set(
+                                                              attr,
+                                                              "name",
+                                                              $$a
+                                                                .slice(0, $$i)
+                                                                .concat(
+                                                                  $$a.slice(
+                                                                    $$i + 1
+                                                                  )
+                                                                )
+                                                            )
+                                                        }
+                                                      } else {
+                                                        _vm.$set(
+                                                          attr,
+                                                          "name",
+                                                          $$c
+                                                        )
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "input",
+                                                _vm.defaultConfig.additional
+                                                  .inputs,
+                                                false
+                                              )
+                                            )
+                                          : _vm.defaultConfig.additional.inputs
+                                              .type === "radio"
+                                          ? _c(
+                                              "input",
+                                              _vm._b(
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: attr.name,
+                                                      expression: "attr.name"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    placeholder: "Name",
+                                                    type: "radio"
+                                                  },
+                                                  domProps: {
+                                                    checked: _vm._q(
+                                                      attr.name,
+                                                      null
+                                                    )
+                                                  },
+                                                  on: {
+                                                    change: function($event) {
+                                                      return _vm.$set(
+                                                        attr,
+                                                        "name",
+                                                        null
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                "input",
+                                                _vm.defaultConfig.additional
+                                                  .inputs,
+                                                false
+                                              )
+                                            )
+                                          : _c(
+                                              "input",
+                                              _vm._b(
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: attr.name,
+                                                      expression: "attr.name"
+                                                    }
+                                                  ],
+                                                  attrs: {
+                                                    placeholder: "Name",
+                                                    type:
+                                                      _vm.defaultConfig
+                                                        .additional.inputs.type
+                                                  },
+                                                  domProps: {
+                                                    value: attr.name
+                                                  },
+                                                  on: {
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.$set(
+                                                        attr,
+                                                        "name",
+                                                        $event.target.value
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                "input",
+                                                _vm.defaultConfig.additional
+                                                  .inputs,
+                                                false
+                                              )
+                                            ),
+                                        _vm._v(" "),
+                                        e.useName
+                                          ? [
+                                              _vm.defaultConfig.additional
+                                                .inputs.type === "checkbox"
+                                                ? _c(
+                                                    "input",
+                                                    _vm._b(
+                                                      {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value: attr.value,
+                                                            expression:
+                                                              "attr.value"
+                                                          }
+                                                        ],
+                                                        attrs: {
+                                                          placeholder: "Value",
+                                                          type: "checkbox"
+                                                        },
+                                                        domProps: {
+                                                          checked: Array.isArray(
+                                                            attr.value
+                                                          )
+                                                            ? _vm._i(
+                                                                attr.value,
+                                                                null
+                                                              ) > -1
+                                                            : attr.value
+                                                        },
+                                                        on: {
+                                                          change: function(
+                                                            $event
+                                                          ) {
+                                                            var $$a =
+                                                                attr.value,
+                                                              $$el =
+                                                                $event.target,
+                                                              $$c = $$el.checked
+                                                                ? true
+                                                                : false
+                                                            if (
+                                                              Array.isArray($$a)
+                                                            ) {
+                                                              var $$v = null,
+                                                                $$i = _vm._i(
+                                                                  $$a,
+                                                                  $$v
+                                                                )
+                                                              if (
+                                                                $$el.checked
+                                                              ) {
+                                                                $$i < 0 &&
+                                                                  _vm.$set(
+                                                                    attr,
+                                                                    "value",
+                                                                    $$a.concat([
+                                                                      $$v
+                                                                    ])
+                                                                  )
+                                                              } else {
+                                                                $$i > -1 &&
+                                                                  _vm.$set(
+                                                                    attr,
+                                                                    "value",
+                                                                    $$a
+                                                                      .slice(
+                                                                        0,
+                                                                        $$i
+                                                                      )
+                                                                      .concat(
+                                                                        $$a.slice(
+                                                                          $$i +
+                                                                            1
+                                                                        )
+                                                                      )
+                                                                  )
+                                                              }
+                                                            } else {
+                                                              _vm.$set(
+                                                                attr,
+                                                                "value",
+                                                                $$c
+                                                              )
+                                                            }
+                                                          }
+                                                        }
+                                                      },
+                                                      "input",
+                                                      _vm.defaultConfig
+                                                        .additional.inputs,
+                                                      false
+                                                    )
+                                                  )
+                                                : _vm.defaultConfig.additional
+                                                    .inputs.type === "radio"
+                                                ? _c(
+                                                    "input",
+                                                    _vm._b(
+                                                      {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value: attr.value,
+                                                            expression:
+                                                              "attr.value"
+                                                          }
+                                                        ],
+                                                        attrs: {
+                                                          placeholder: "Value",
+                                                          type: "radio"
+                                                        },
+                                                        domProps: {
+                                                          checked: _vm._q(
+                                                            attr.value,
+                                                            null
+                                                          )
+                                                        },
+                                                        on: {
+                                                          change: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.$set(
+                                                              attr,
+                                                              "value",
+                                                              null
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      "input",
+                                                      _vm.defaultConfig
+                                                        .additional.inputs,
+                                                      false
+                                                    )
+                                                  )
+                                                : _c(
+                                                    "input",
+                                                    _vm._b(
+                                                      {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value: attr.value,
+                                                            expression:
+                                                              "attr.value"
+                                                          }
+                                                        ],
+                                                        attrs: {
+                                                          placeholder: "Value",
+                                                          type:
+                                                            _vm.defaultConfig
+                                                              .additional.inputs
+                                                              .type
+                                                        },
+                                                        domProps: {
+                                                          value: attr.value
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              attr,
+                                                              "value",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      "input",
+                                                      _vm.defaultConfig
+                                                        .additional.inputs,
+                                                      false
+                                                    )
+                                                  )
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          _vm._b(
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  return e.options.splice(
+                                                    index,
+                                                    1
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            "button",
+                                            _vm.defaultConfig.additional.remove,
+                                            false
+                                          ),
+                                          [_vm._v("⊗")]
+                                        )
+                                      ],
+                                      2
+                                    )
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    _vm._b(
+                                      {
+                                        on: {
+                                          click: function($event) {
+                                            return e.options.push({
+                                              name: null,
+                                              value: null
+                                            })
+                                          }
+                                        }
+                                      },
+                                      "button",
+                                      _vm.defaultConfig.additional.add,
+                                      false
+                                    ),
+                                    [_vm._v("Add option")]
+                                  )
+                                ],
+                                2
+                              )
+                            ]
+                          : e.type === "textarea"
+                          ? [
+                              _vm.hide[e.type].indexOf("cols") < 0
+                                ? [
+                                    _c("span", [_vm._v("Cols")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "text" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.cols = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.hide[e.type].indexOf("rows") < 0
+                                ? [
+                                    _c("span", [_vm._v("Rows")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "text" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.rows = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.hide[e.type].indexOf("maxlength") < 0
+                                ? [
+                                    _c("span", [_vm._v("Max Length")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "number" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.maxlength = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.hide[e.type].indexOf("readonly") < 0
+                                ? _c("div", [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: e.name + i } },
+                                      [_vm._v("Readonly")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: {
+                                        id: e.name + i,
+                                        type: "checkbox"
+                                      },
+                                      on: {
+                                        change: function(t) {
+                                          return (e.readonly = t.target.checked)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ])
+                                : _vm._e()
+                            ]
+                          : [
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("placeholder") < 0
+                                ? [
+                                    _c("span", [_vm._v("Placeholder")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "text" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.placeholder =
+                                            t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("min") < 0
+                                ? [
+                                    _c("span", [_vm._v("Min")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "number" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.min = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("max") < 0
+                                ? [
+                                    _c("span", [_vm._v("Max")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "number" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.max = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type === "file" &&
+                              _vm.hide[e.type].indexOf("multiple") < 0
+                                ? [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: e.name + i } },
+                                      [_vm._v("Multiple")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: {
+                                        id: e.name + i,
+                                        type: "checkbox"
+                                      },
+                                      on: {
+                                        change: function(t) {
+                                          return (e.multiple = t.target.checked)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("default") < 0
+                                ? [
+                                    _c("span", [_vm._v("Default")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "text" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.value = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("pattern") < 0
+                                ? [
+                                    _c("span", [_vm._v("Pattern")]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: { type: "text" },
+                                      on: {
+                                        keyup: function(t) {
+                                          return (e.pattern = t.target.value)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("autofocus") < 0
+                                ? [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: e.name + i } },
+                                      [_vm._v("Autofocus")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      attrs: {
+                                        id: e.name + i,
+                                        type: "checkbox"
+                                      },
+                                      on: {
+                                        change: function(t) {
+                                          return (e.autofocus =
+                                            t.target.checked)
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br")
+                                  ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              e.type !== "file" &&
+                              _vm.hide[e.type].indexOf("autocomplete") < 0
+                                ? [
+                                    _c("span", [_vm._v("Autocomplete")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        on: {
+                                          change: function(t) {
+                                            return (e.autocomplete =
+                                              t.target.value)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "",
+                                              disabled: "",
+                                              selected: ""
+                                            }
+                                          },
+                                          [_vm._v("Select")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "on" } },
+                                          [_vm._v("On")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "off" } },
+                                          [_vm._v("Off")]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                : _vm._e()
+                            ]
+                      ]
+                    : [
+                        [
+                          _c("span", [_vm._v("Content")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.templates[e.type].content,
+                                expression: "templates[e.type].content"
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.templates[e.type].content },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.templates[e.type],
+                                  "content",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("br")
+                        ],
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          { class: _vm.defaultConfig.class.buttonType.span },
+                          [_vm._v("Type:")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: e.buttonType,
+                                expression: "e.buttonType"
+                              }
+                            ],
+                            class: _vm.defaultConfig.class.buttonType.select,
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  e,
+                                  "buttonType",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "button" } }, [
+                              _vm._v("Button")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "reset" } }, [
+                              _vm._v("Reset")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "submit" } }, [
+                              _vm._v("Bubmit")
+                            ])
+                          ]
+                        )
+                      ],
+                  _vm._v(" "),
+                  _vm.templates[e.type]
+                    ? _c("div", [
                         _c("label", { attrs: { for: e.name + i } }, [
-                          _vm._v("Required")
+                          _vm._v("Disabled")
                         ]),
                         _vm._v(" "),
                         _c("input", {
                           attrs: { id: e.name + i, type: "checkbox" },
                           on: {
                             change: function(t) {
-                              return (e.required = t.target.checked)
+                              return (e.disabled = t.target.checked)
                             }
                           }
                         }),
                         _vm._v(" "),
                         _c("br")
-                      ]
+                      ])
                     : _vm._e(),
-                  _vm._v(" "),
-                  _vm.hide[e.type].indexOf("label") < 0
-                    ? [
-                        _c("fieldset", [
-                          _c("legend", [_vm._v("Label:")]),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Name")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "text" },
-                            on: {
-                              keyup: function(t) {
-                                return (e.label.text = t.target.value)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Class")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "text" },
-                            on: {
-                              keyup: function(t) {
-                                return (e.label.class = t.target.value)
-                              }
-                            }
-                          })
-                        ])
-                      ]
-                    : _vm._e(),
-                  _vm._v(" "),
-                  e.type === "radio" || e.type === "select"
-                    ? [
-                        _c(
-                          "fieldset",
-                          [
-                            _c("legend", [_vm._v("Options:")]),
-                            _vm._v(" "),
-                            _vm._l(e.options, function(attr, index) {
-                              return _c("div", [
-                                _vm.defaultConfig.additional.inputs.type ===
-                                "checkbox"
-                                  ? _c(
-                                      "input",
-                                      _vm._b(
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: attr.name,
-                                              expression: "attr.name"
-                                            }
-                                          ],
-                                          attrs: {
-                                            placeholder: "Name",
-                                            type: "checkbox"
-                                          },
-                                          domProps: {
-                                            checked: Array.isArray(attr.name)
-                                              ? _vm._i(attr.name, null) > -1
-                                              : attr.name
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              var $$a = attr.name,
-                                                $$el = $event.target,
-                                                $$c = $$el.checked
-                                                  ? true
-                                                  : false
-                                              if (Array.isArray($$a)) {
-                                                var $$v = null,
-                                                  $$i = _vm._i($$a, $$v)
-                                                if ($$el.checked) {
-                                                  $$i < 0 &&
-                                                    _vm.$set(
-                                                      attr,
-                                                      "name",
-                                                      $$a.concat([$$v])
-                                                    )
-                                                } else {
-                                                  $$i > -1 &&
-                                                    _vm.$set(
-                                                      attr,
-                                                      "name",
-                                                      $$a
-                                                        .slice(0, $$i)
-                                                        .concat(
-                                                          $$a.slice($$i + 1)
-                                                        )
-                                                    )
-                                                }
-                                              } else {
-                                                _vm.$set(attr, "name", $$c)
-                                              }
-                                            }
-                                          }
-                                        },
-                                        "input",
-                                        _vm.defaultConfig.additional.inputs,
-                                        false
-                                      )
-                                    )
-                                  : _vm.defaultConfig.additional.inputs.type ===
-                                    "radio"
-                                  ? _c(
-                                      "input",
-                                      _vm._b(
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: attr.name,
-                                              expression: "attr.name"
-                                            }
-                                          ],
-                                          attrs: {
-                                            placeholder: "Name",
-                                            type: "radio"
-                                          },
-                                          domProps: {
-                                            checked: _vm._q(attr.name, null)
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              return _vm.$set(
-                                                attr,
-                                                "name",
-                                                null
-                                              )
-                                            }
-                                          }
-                                        },
-                                        "input",
-                                        _vm.defaultConfig.additional.inputs,
-                                        false
-                                      )
-                                    )
-                                  : _c(
-                                      "input",
-                                      _vm._b(
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: attr.name,
-                                              expression: "attr.name"
-                                            }
-                                          ],
-                                          attrs: {
-                                            placeholder: "Name",
-                                            type:
-                                              _vm.defaultConfig.additional
-                                                .inputs.type
-                                          },
-                                          domProps: { value: attr.name },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                attr,
-                                                "name",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        },
-                                        "input",
-                                        _vm.defaultConfig.additional.inputs,
-                                        false
-                                      )
-                                    ),
-                                _vm._v(" "),
-                                _vm.defaultConfig.additional.inputs.type ===
-                                "checkbox"
-                                  ? _c(
-                                      "input",
-                                      _vm._b(
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: attr.value,
-                                              expression: "attr.value"
-                                            }
-                                          ],
-                                          attrs: {
-                                            placeholder: "Value",
-                                            type: "checkbox"
-                                          },
-                                          domProps: {
-                                            checked: Array.isArray(attr.value)
-                                              ? _vm._i(attr.value, null) > -1
-                                              : attr.value
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              var $$a = attr.value,
-                                                $$el = $event.target,
-                                                $$c = $$el.checked
-                                                  ? true
-                                                  : false
-                                              if (Array.isArray($$a)) {
-                                                var $$v = null,
-                                                  $$i = _vm._i($$a, $$v)
-                                                if ($$el.checked) {
-                                                  $$i < 0 &&
-                                                    _vm.$set(
-                                                      attr,
-                                                      "value",
-                                                      $$a.concat([$$v])
-                                                    )
-                                                } else {
-                                                  $$i > -1 &&
-                                                    _vm.$set(
-                                                      attr,
-                                                      "value",
-                                                      $$a
-                                                        .slice(0, $$i)
-                                                        .concat(
-                                                          $$a.slice($$i + 1)
-                                                        )
-                                                    )
-                                                }
-                                              } else {
-                                                _vm.$set(attr, "value", $$c)
-                                              }
-                                            }
-                                          }
-                                        },
-                                        "input",
-                                        _vm.defaultConfig.additional.inputs,
-                                        false
-                                      )
-                                    )
-                                  : _vm.defaultConfig.additional.inputs.type ===
-                                    "radio"
-                                  ? _c(
-                                      "input",
-                                      _vm._b(
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: attr.value,
-                                              expression: "attr.value"
-                                            }
-                                          ],
-                                          attrs: {
-                                            placeholder: "Value",
-                                            type: "radio"
-                                          },
-                                          domProps: {
-                                            checked: _vm._q(attr.value, null)
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              return _vm.$set(
-                                                attr,
-                                                "value",
-                                                null
-                                              )
-                                            }
-                                          }
-                                        },
-                                        "input",
-                                        _vm.defaultConfig.additional.inputs,
-                                        false
-                                      )
-                                    )
-                                  : _c(
-                                      "input",
-                                      _vm._b(
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: attr.value,
-                                              expression: "attr.value"
-                                            }
-                                          ],
-                                          attrs: {
-                                            placeholder: "Value",
-                                            type:
-                                              _vm.defaultConfig.additional
-                                                .inputs.type
-                                          },
-                                          domProps: { value: attr.value },
-                                          on: {
-                                            input: function($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                attr,
-                                                "value",
-                                                $event.target.value
-                                              )
-                                            }
-                                          }
-                                        },
-                                        "input",
-                                        _vm.defaultConfig.additional.inputs,
-                                        false
-                                      )
-                                    ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  _vm._b(
-                                    {
-                                      on: {
-                                        click: function($event) {
-                                          return e.options.splice(index, 1)
-                                        }
-                                      }
-                                    },
-                                    "button",
-                                    _vm.defaultConfig.additional.remove,
-                                    false
-                                  ),
-                                  [_vm._v("⊗")]
-                                )
-                              ])
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              _vm._b(
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      return e.options.push({
-                                        name: null,
-                                        value: null
-                                      })
-                                    }
-                                  }
-                                },
-                                "button",
-                                _vm.defaultConfig.additional.add,
-                                false
-                              ),
-                              [_vm._v("Add option")]
-                            )
-                          ],
-                          2
-                        )
-                      ]
-                    : [
-                        e.type !== "file" &&
-                        _vm.hide[e.type].indexOf("placeholder") < 0
-                          ? [
-                              _c("span", [_vm._v("Placeholder")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "text" },
-                                on: {
-                                  keyup: function(t) {
-                                    return (e.placeholder = t.target.value)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type !== "file" && _vm.hide[e.type].indexOf("min") < 0
-                          ? [
-                              _c("span", [_vm._v("Min")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "number" },
-                                on: {
-                                  keyup: function(t) {
-                                    return (e.min = t.target.value)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type !== "file" && _vm.hide[e.type].indexOf("max") < 0
-                          ? [
-                              _c("span", [_vm._v("Max")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "number" },
-                                on: {
-                                  keyup: function(t) {
-                                    return (e.max = t.target.value)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type === "file" &&
-                        _vm.hide[e.type].indexOf("multiple") < 0
-                          ? [
-                              _c("label", { attrs: { for: e.name + i } }, [
-                                _vm._v("Multiple")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { id: e.name + i, type: "checkbox" },
-                                on: {
-                                  change: function(t) {
-                                    return (e.multiple = t.target.checked)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type !== "file" &&
-                        _vm.hide[e.type].indexOf("default") < 0
-                          ? [
-                              _c("span", [_vm._v("Default")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "text" },
-                                on: {
-                                  keyup: function(t) {
-                                    return (e.value = t.target.value)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type !== "file" &&
-                        _vm.hide[e.type].indexOf("pattern") < 0
-                          ? [
-                              _c("span", [_vm._v("Pattern")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "text" },
-                                on: {
-                                  keyup: function(t) {
-                                    return (e.pattern = t.target.value)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type !== "file" &&
-                        _vm.hide[e.type].indexOf("autofocus") < 0
-                          ? [
-                              _c("label", { attrs: { for: e.name + i } }, [
-                                _vm._v("Autofocus")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { id: e.name + i, type: "checkbox" },
-                                on: {
-                                  change: function(t) {
-                                    return (e.autofocus = t.target.checked)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        e.type !== "file" &&
-                        _vm.hide[e.type].indexOf("autocomplete") < 0
-                          ? [
-                              _c("span", [_vm._v("Autocomplete")]),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  on: {
-                                    change: function(t) {
-                                      return (e.autocomplete = t.target.value)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: {
-                                        value: "",
-                                        disabled: "",
-                                        selected: ""
-                                      }
-                                    },
-                                    [_vm._v("Select")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "on" } }, [
-                                    _vm._v("On")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "off" } }, [
-                                    _vm._v("Off")
-                                  ])
-                                ]
-                              )
-                            ]
-                          : _vm._e()
-                      ],
                   _vm._v(" "),
                   _c(
                     "fieldset",
@@ -14005,7 +15194,7 @@ var render = function() {
             staticStyle: { padding: "10px", border: "1px solid blue" },
             attrs: { draggable: "true", "data-id": el }
           },
-          [_vm._v("\n            " + _vm._s(el) + "\n        ")]
+          [_vm._v("\n                " + _vm._s(el) + "\n            ")]
         )
       }),
       0
