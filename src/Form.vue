@@ -1,16 +1,15 @@
 <template>
-    <div id="main">
+    <div id="vue-form-gen-main">
 <!--        Side(Left) Container-->
-        <div ref="display" class="builder list"
-             style="width:600px;border:1px solid #f00;display:inline-block;min-height:90px;vertical-align:top">
+        <div ref="display" class="vue-form-gen-builder list" style="">
 
             <template v-for="(e, i) in listed">
                 <fieldset>
                     <legend>{{ e.type}}:</legend>
 
-                    <div style="width:90%;display:inline-block;">
+                    <component class="vue-form-gen-element" :is="defaultConfig.containerTag" ref="exportable">
 
-                        <label :class="e.label.class">{{ e.label.text }}</label>
+                        <label v-if="e.label.text" :class="e.label.class" v-html="e.label.text"></label>
 
                         <!--Radio options-->
                         <template v-if="e.type === 'radio' || e.type === 'checkbox'">
@@ -28,10 +27,14 @@
                                 </component>
                             </comment>
                         </template>
-<!--                        <span style="color:red">Click</button>-->
+
                         <template v-else-if="e.type === 'button'">
-                            <comment :is="templates[e.type].tag" v-bind="attributes(e)" v-html="'dsd'">
+                            <comment :is="templates[e.type]" v-bind="attributes(e)" v-html="e.content">
                             </comment>
+                        </template>
+
+                        <template v-else-if="e.type === 'paragraph' || e.type === 'label'">
+                            <comment :is="templates[e.type]" v-bind="attributes(e)" v-html="e.content"></comment>
                         </template>
 
                         <!--Every other input option-->
@@ -39,10 +42,10 @@
                            <comment :is="templates[e.type]" v-bind="attributes(e)"></comment>
                        </template>
 
-                    </div>
+                    </component>
 
                     <!--Action Icons-->
-                    <div style="display:inline-block">
+                    <div class="vue-form-gen-action">
 
                         <!--Hide/Show Icon on each element-->
                         <span @click="toggle[i] = true" v-show="! toggle[i]" :style="action.toggle.style" :class="action.toggle.class" v-html="action.toggle.show"></span>
@@ -68,189 +71,239 @@
                     <!--Attributes Helper. Stays hidden unless toggled-->
                     <div v-show="toggle[i]" style="margin-top:10px;display:block;padding:10px;border-top:1px solid #ddd">
 
-                        <!--Adds Name to current element-->
-                        <template v-if="hide[e.type].indexOf('name') < 0">
-                            <span>Name</span>
-                            <input type="text" @keyup="t => e.name = t.target.value"> <br />
+                        <template v-if="e.type === 'paragraph' || e.type === 'label'">
+                            <label> Content
+                                <textarea rows="4" cols="70" v-model="e.content"></textarea>
+                            </label>
                         </template>
-
-                        <template v-if="e.type !== 'button'">
-                            <!--Adds required to current element-->
-                            <template v-if="hide[e.type].indexOf('required') < 0">
-                                <label :for="e.name + i">Required</label>
-                                <input :id="e.name + i" type="checkbox" @change="t => e.required = t.target.checked"> <br/>
+                        <template v-else>
+                            <!--Adds Name to current element-->
+                            <template v-if="hide[e.type].indexOf('name') < 0">
+                               <div class="vue-form-gen-rendered">
+                                   <span>Name</span>
+                                   <input type="text" v-model="e.name">
+                               </div>
                             </template>
 
-                            <!--Adds Label to current element-->
-                            <template v-if="hide[e.type].indexOf('label') < 0">
-                                <fieldset>
-                                    <legend>Label:</legend>
-                                    <span>Name</span>
-                                    <input type="text" @keyup="t => e.label.text = t.target.value">
+                            <template v-if="e.type !== 'button'">
+                                <!--Adds required to current element-->
+                                <template v-if="hide[e.type].indexOf('required') < 0">
+                                     <div class="vue-form-gen-rendered">
+                                         <input :id="'required' + i" type="checkbox" v-model="e.required">
+                                         <label :for="'required' + i">Required</label>
+                                     </div>
+                                </template>
 
-                                    <span>Class</span>
-                                    <input type="text" @keyup="t => e.label.class = t.target.value">
-                                </fieldset>
-                            </template>
+                                <!--Adds Label to current element-->
+                                <template v-if="hide[e.type].indexOf('label') < 0">
+                                    <fieldset>
+                                        <legend>Label:</legend>
+                                        <span>Name</span>
+                                        <input type="text" @keyup="t => e.label.text = t.target.value">
 
-                            <!--Add/Remove options from select, radio and checkbox element-->
-                            <template v-if="e.type === 'radio' || e.type === 'checkbox' || e.type === 'select'">
+                                        <span>Class</span>
+                                        <input type="text" @keyup="t => e.label.class = t.target.value">
+                                    </fieldset>
+                                </template>
 
-                                <fieldset>
-                                    <legend>Options:</legend>
+                                <!--Add/Remove options from select, radio and checkbox element-->
+                                <template v-if="e.type === 'radio' || e.type === 'checkbox' || e.type === 'select'">
 
-                                    <input type="checkbox" :id="`option-list${i}`" v-model="e.useName">
-                                    <label :for="`option-list${i}`">Use Name as value?</label>
+                                    <fieldset>
+                                        <legend>Options:</legend>
 
-                                    <div v-for="(attr, index) in e.options">
-                                        <!--New option name-->
-                                        <input v-bind="defaultConfig.additional.inputs" v-model="attr.name" placeholder="Name">
-                                        <template v-if="e.useName">
-                                            <!--New option value-->
-                                            <input v-bind="defaultConfig.additional.inputs" v-model="attr.value" placeholder="Value">
-                                        </template>
-                                        <!--Existing option removal button-->
-                                        <button v-bind="defaultConfig.additional.remove" @click="e.options.splice(index, 1)">⊗</button>
+                                        <input type="checkbox" :id="`option-list${i}`" v-model="e.useName">
+                                        <label :for="`option-list${i}`">Use Name as value?</label>
+
+                                        <div v-for="(attr, index) in e.options">
+                                            <!--New option name-->
+                                            <input v-bind="defaultConfig.additional.inputs" v-model="attr.name" placeholder="Name">
+                                            <template v-if="e.useName">
+                                                <!--New option value-->
+                                                <input v-bind="defaultConfig.additional.inputs" v-model="attr.value" placeholder="Value">
+                                            </template>
+                                            <!--Existing option removal button-->
+                                            <button v-bind="defaultConfig.additional.remove" @click="e.options.splice(index, 1)">⊗</button>
+                                        </div>
+
+                                        <!--Adds to option-->
+                                        <button v-bind="defaultConfig.additional.add" @click="e.options.push({name: null, value: null})">Add option</button>
+
+                                    </fieldset>
+
+                                </template>
+
+                                <template v-else-if="e.type === 'textarea'">
+
+                                    <template v-if="hide[e.type].indexOf('cols') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Cols</span>
+                                            <input type="text" v-model="e.cols">
+                                        </div>
+                                    </template>
+
+                                    <template v-if="hide[e.type].indexOf('rows') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Rows</span>
+                                            <input type="text" v-model="e.rows">
+                                        </div>
+                                    </template>
+
+                                    <template v-if="hide[e.type].indexOf('maxlength') < 0">
+                                       <div class="vue-form-gen-rendered">
+                                           <span>Max Length</span>
+                                           <input type="number" v-model="e.maxlength">
+                                       </div>
+                                    </template>
+
+                                    <div v-if="hide[e.type].indexOf('readonly') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <input :id="'readonly' + i" type="checkbox" v-model="e.readonly">
+                                            <label :for="'readonly' + i">Readonly</label>
+                                        </div>
                                     </div>
 
-                                    <!--Adds to option-->
-                                    <button v-bind="defaultConfig.additional.add" @click="e.options.push({name: null, value: null})">Add option</button>
+                                </template>
 
-                                </fieldset>
+                                <!--Every other input attribute-->
+                                <template v-else>
+                                    <!--Adds Placeholder to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('placeholder') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Placeholder</span>
+                                            <input type="text" v-model="e.placeholder">
+                                        </div>
+                                    </template>
 
+                                    <!--Adds min to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('min') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Min</span>
+                                            <input type="number" v-model="e.min">
+                                        </div>
+                                    </template>
+
+                                    <!--Adds max to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('max') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Max</span>
+                                            <input type="number" v-model="e.max">
+                                        </div>
+                                    </template>
+
+                                    <!--Adds multiple to input:file element-->
+                                    <template v-if="e.type === 'file' && hide[e.type].indexOf('multiple') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <input :id="e.name + i" type="checkbox" v-model="e.multiple">
+                                            <label :for="e.name + i">Multiple</label>
+                                        </div>
+                                    </template>
+
+                                    <!--Adds default value to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('default') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Default</span>
+                                            <input type="text" v-model="e.value">
+                                        </div>
+                                    </template>
+
+                                    <!--Adds regex pattern to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('pattern') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Pattern</span>
+                                            <input type="text" v-model="e.pattern">
+                                        </div>
+                                    </template>
+
+                                    <!--Adds auto focus to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('autofocus') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <input :id="'autofocus' + i" type="checkbox" v-model="e.autofocus">
+                                            <label :for="'autofocus' + i">Autofocus</label>
+                                        </div>
+                                    </template>
+
+                                    <!--Adds auto complete to input element-->
+                                    <template v-if="e.type !== 'file' && hide[e.type].indexOf('autocomplete') < 0">
+                                        <div class="vue-form-gen-rendered">
+                                            <span>Autocomplete</span>
+                                            <select v-model="e.autocomplete">
+                                                <option value="" disabled selected>Select</option>
+                                                <option value="on">On</option>
+                                                <option value="off">Off</option>
+                                            </select>
+                                        </div>
+                                    </template>
+                                </template>
                             </template>
 
-                            <template v-else-if="e.type === 'textarea'">
+                            <template v-else>
 
-                                <template v-if="hide[e.type].indexOf('cols') < 0">
-                                    <span>Cols</span>
-                                    <input type="text" @keyup="t => e.cols = t.target.value"> <br/>
+                                <template>
+                                    <div class="vue-form-gen-rendered">
+                                        <span>Content <i>(accepts HTML)</i></span>
+                                        <input type="text" v-model="e.content">
+                                    </div>
                                 </template>
 
-                                <template v-if="hide[e.type].indexOf('rows') < 0">
-                                    <span>Rows</span>
-                                    <input type="text" @keyup="t => e.rows = t.target.value"> <br/>
-                                </template>
-
-                                <template v-if="hide[e.type].indexOf('maxlength') < 0">
-                                    <span>Max Length</span>
-                                    <input type="number" @keyup="t => e.maxlength = t.target.value"> <br/>
-                                </template>
-
-                                <div v-if="hide[e.type].indexOf('readonly') < 0">
-                                    <label :for="e.name + i">Readonly</label>
-                                    <input :id="e.name + i" type="checkbox" @change="t => e.readonly = t.target.checked"> <br/>
+                                <div class="vue-form-gen-rendered">
+                                    <label :class="defaultConfig.class.buttonType.span">Type:</label>
+                                    <select v-model="e.buttonType" :class="defaultConfig.class.buttonType.select">
+                                        <option value="button">Button</option>
+                                        <option value="reset">Reset</option>
+                                        <option value="submit">Bubmit</option>
+                                    </select>
                                 </div>
 
                             </template>
 
-                            <!--Every other input attribute-->
-                            <template v-else>
-                                <!--Adds Placeholder to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('placeholder') < 0">
-                                    <span>Placeholder</span>
-                                    <input type="text" @keyup="t => e.placeholder = t.target.value"> <br/>
-                                </template>
-
-                                <!--Adds min to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('min') < 0">
-                                    <span>Min</span>
-                                    <input type="number" @keyup="t => e.min = t.target.value"> <br/>
-                                </template>
-
-                                <!--Adds max to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('max') < 0">
-                                    <span>Max</span>
-                                    <input type="number" @keyup="t => e.max = t.target.value"> <br/>
-                                </template>
-
-                                <!--Adds multiple to input:file element-->
-                                <template v-if="e.type === 'file' && hide[e.type].indexOf('multiple') < 0">
-                                    <label :for="e.name + i">Multiple</label>
-                                    <input :id="e.name + i" type="checkbox" @change="t => e.multiple = t.target.checked"> <br/>
-                                </template>
-
-                                <!--Adds default value to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('default') < 0">
-                                    <span>Default</span>
-                                    <input type="text" @keyup="t => e.value = t.target.value"> <br/>
-                                </template>
-
-                                <!--Adds regex pattern to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('pattern') < 0">
-                                    <span>Pattern</span>
-                                    <input type="text" @keyup="t => e.pattern = t.target.value"> <br/>
-                                </template>
-
-                                <!--Adds auto focus to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('autofocus') < 0">
-                                    <label :for="e.name + i">Autofocus</label>
-                                    <input :id="e.name + i" type="checkbox" @change="t => e.autofocus = t.target.checked"> <br/>
-                                </template>
-
-                                <!--Adds auto complete to input element-->
-                                <template v-if="e.type !== 'file' && hide[e.type].indexOf('autocomplete') < 0">
-                                    <span>Autocomplete</span>
-                                    <select @change="t => e.autocomplete = t.target.value">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="on">On</option>
-                                        <option value="off">Off</option>
-                                    </select>
-                                </template>
-                            </template>
-                        </template>
-                        <template v-else>
-
-                            <template>
-                                <span>Content</span>
-                                <input type="text" v-model="templates[e.type].content"> <br />
-                            </template>
-
-                            <label :class="defaultConfig.class.buttonType.span">Type:</label>
-                            <select v-model="e.buttonType" :class="defaultConfig.class.buttonType.select">
-                                <option value="button">Button</option>
-                                <option value="reset">Reset</option>
-                                <option value="submit">Bubmit</option>
-                            </select>
-
-                        </template>
-
-                        <!--Adds disabled to current element-->
-                        <div v-if="templates[e.type]">
-                            <label :for="e.name + i">Disabled</label>
-                            <input :id="e.name + i" type="checkbox" @change="t => e.disabled = t.target.checked"> <br/>
-                        </div>
-
-                        <!--Additional Custom Attributes. Adds a custom attribute to current element-->
-                        <fieldset>
-                            <legend>Additional Attributes:</legend>
-                            <div v-for="(attr, index) in e.additionalAttr">
-                                <!--Additional attribute name-->
-                                <input v-bind="defaultConfig.additional.inputs" v-model="attr.name" placeholder="Name">
-                                <!--Additional attribute value-->
-                                <input v-bind="defaultConfig.additional.inputs" v-model="attr.value" placeholder="Value">
-                                <!--Additional attribute remove button-->
-                                <button v-bind="defaultConfig.additional.remove" @click="e.additionalAttr.splice(index, 1)">⊗</button>
+                            <!--Adds disabled to current element-->
+                            <div v-if="templates[e.type]">
+                                <div class="vue-form-gen-rendered">
+                                    <input :id="'disabled' + i" type="checkbox" v-model="e.disabled">
+                                    <label :for="'disabled' + i">Disabled</label>
+                                </div>
                             </div>
-                            <!--Adds new additional attribute-->
-                            <button v-bind="defaultConfig.additional.add" @click="e.additionalAttr.push({name: null, value: null})">Add Attribute</button>
 
-                        </fieldset>
+                            <!--Additional Custom Attributes. Adds a custom attribute to current element-->
+                            <fieldset>
+                                <legend>Additional Attributes:</legend>
+                                <div v-for="(attr, index) in e.additionalAttr" class="vue-form-gen-attributes-options">
+                                    <!--Additional attribute name-->
+                                    <input v-bind="defaultConfig.additional.inputs" v-model="attr.name" placeholder="Name">
+                                    <!--Additional attribute value-->
+                                    <input v-bind="defaultConfig.additional.inputs" v-model="attr.value" placeholder="Value">
+                                    <!--Additional attribute remove button-->
+                                    <button v-bind="defaultConfig.additional.remove" @click="e.additionalAttr.splice(index, 1)">⊗</button>
+                                </div>
+                                <!--Adds new additional attribute-->
+                                <button v-bind="defaultConfig.additional.add" @click="e.additionalAttr.push({name: null, value: null})">Add Attribute</button>
+
+                            </fieldset>
+                        </template>
 
                     </div>
 
                 </fieldset>
             </template>
 
+            <template v-if="exported">
+                <div class="vue-form-gen-export">
+                    <pre>{{ exported }}</pre>
+                </div>
+            </template>
+
         </div>
         <!--Side(Right) Draggable elements-->
-        <div class="list" style="width:300px;border:1px solid #f00;display:inline-block;vertical-align:top">
-            <div ref="draggable" draggable="true" class="dragable" v-for="el in list" :data-id="el" :key="el"
-                 style="padding:10px;border:1px solid blue">
+        <div class="vue-form-gen-element-list">
+            <div ref="draggable" draggable="true" class="vue-form-gen-draggable" v-for="el in list" :data-id="el" :key="el">
                 {{ el }}
             </div>
+            <div class="vue-form-gen-export-btn">
+                <button class="vue-form-gen-button" @click="extract('html')">Extract Html</button>
+                <button class="vue-form-gen-button" @click="extract('json')">Extract JSON</button>
+            </div>
         </div>
-        <pre>{{ listed }}</pre>
 
 
     </div>
@@ -509,25 +562,6 @@
         name: "Index",
         data() {
             return {
-                name: 'chrys',
-                /*list: [
-                  'text',
-                  'file',
-                  'email',
-                  'number',
-                  'hidden',
-                  'password',
-                  'url',
-                  'radio',
-                  'range',
-                  'select',
-                  'country',
-                  'textarea',
-                  'button',
-                  'label',
-                  'paragraph',
-                  'legend',
-                ],*/
                 templates: {
                     text: 'input',
                     file: 'input',
@@ -540,10 +574,7 @@
                     radio: 'input',
                     checkbox: 'input',
                     textarea: 'textarea',
-                    button: {
-                        tag: 'button',
-                        content: 'Button'
-                    },
+                    button: 'button',
                     select: {
                         select: 'select',
                         option: 'option',
@@ -551,7 +582,9 @@
                     countries: {
                         select: 'select',
                         option: 'option',
-                    }
+                    },
+                    paragraph: 'p',
+                    label: 'label',
                 },
                 toggle: {},
                 defaultConfig: {
@@ -572,7 +605,8 @@
                     },
                     additional: {
                         inputs: {
-                            style: 'width:44%',
+                            style: null,
+                            class: null
                         },
                         add: {
                             style: 'margin-top:10px'
@@ -580,17 +614,11 @@
                       remove: {
                         style: 'margin-top:10px'
                       }
-                    }
-                },
-                placeholders: {
-                    text: {
-                        name: 'name',
-                        required: true,
-                        placeholder: 'First Name',
-                    }
+                    },
+                    containerTag: 'div'
                 },
                 listed: [],
-                rendered: ''
+                exported: null
             }
         },
         computed: {
@@ -609,7 +637,13 @@
         },
         created() {
           this.defaultConfig = Object.assign({}, this.defaultConfig, this.config);
+          // If importing
           if (Array.isArray(this.import)) {
+              // populate hide field.
+              this.import.forEach((e, i) => {
+                  this.$set(this.defaultConfig.hide, e.type, []);
+                  this.$set(this.toggle, i, false);
+              });
               this.listed = this.import;
           }
         },
@@ -623,17 +657,20 @@
                 let type = e.dataTransfer.getData('text'),
                   options = null;
 
+                // Set the default option for radio, checkbox and select
                 if (['radio', 'checkbox', 'select'].indexOf(type) >= 0) {
                     options = [
                         {name: 'Yes', value: 1},
                         {name: 'No', value: 0}
                     ];
-                } else if (type === 'countries') {
+                }
+                // Converts countries to select field.
+                else if (type === 'countries') {
                     options = countries;
                     type = 'select';
                 }
 
-
+                // Default data for all attributes.
                 const data = {
                     type,
                     required: false,
@@ -659,6 +696,7 @@
                     readonly: null,
                     disabled: null,
                     buttonType: 'button',
+                    content: 'Content',
                     class: this.defaultConfig.class[type] || 'input'
                 };
 
@@ -680,18 +718,27 @@
 
             this.$refs.draggable.forEach(e => {
                 e.addEventListener('dragstart', e => {
+                    display.classList.add("drag-start");
                     e.dataTransfer.setData("text", e.target.getAttribute('data-id'));
+                }, false);
+
+                e.addEventListener('dragend', e => {
+                    display.classList.remove("drag-start");
                 }, false);
             });
 
         },
         methods: {
+            /**
+             * Create attributes for each element.
+             *
+             * @param {Object} e    element data to extract attributes from.
+             */
             attributes(e) {
                 let attr = {};
               Object.keys(e).forEach(name => {
-
                   // we dont want to add type="select" to select option field
-                  if (name === 'type' && e.type === 'select') {
+                  if ((name === 'type' && e.type === 'select') || (name === 'content') || (name === 'buttonType' && e.type !== 'button')) {
                       return;
                   }
 
@@ -716,7 +763,7 @@
                   // since type is a generic attribute the most of the project relys on
                     // when we create a button we want to be able to change the type attribute
                     // without modifying the generic type, So we set the type attribute using buttonType
-                  else if (name === 'buttonType') {
+                  else if (name === 'buttonType' && e.type === 'button') {
                     attr['type'] = e[name];
                   } else {
                     // eg:  placeholder="...";
@@ -724,8 +771,16 @@
                   }
                 }
               });
+
                 return attr;
             },
+            /**
+             * Moves element to a specific direction(Up or Down)
+             *
+             * @param {string} direction    The direction(up|down) to move {object}.
+             * @param {Object} element      The object to move.
+             * @param {number} index        The index of the object being moved.
+             */
             moveElement(direction, element, index) {
                 const i = direction === 'up' ? index - 1 : index + 1,
                   current = this.listed[i];
@@ -733,24 +788,26 @@
                 this.$set(this.listed, i, this.listed[index]);
                 this.$set(this.listed, index, current);
 
+                // Trigger a callback function if specified
                 this.$emit('move', direction, element, index, i);
             },
+            /**
+             * Extract form data
+             *
+             * @param {string} type The extraction type(html|json)
+             */
+            extract(type) {
+
+                if (type === 'html') {
+                    let html = '';
+                    this.$refs.exportable.forEach(dom => html += dom.outerHTML.replace('<!---->', '') + "\n");
+                    this.exported = html;
+                } else {
+                    this.exported = JSON.stringify(this.listed)+ "\n";
+                }
+            }
 
         }
     }
 </script>
-
-hasPermission(string|array $permission_name, ?int $event_id)
-  if ($event_id)
-    count from role.permission.name = $permission_name and role.event = $event_id
-  else // for generic
-    count from role.permission.name = $permission_name
-
-
-$role = $event->setPermissions('event_manager', ['index', 'store', 'update', 'show', destroy']);
-$user->attach($role)
-
-if (! $user->hasPermission('show', Class:name, $entity->id)) {
-    return response(403);
-}
 

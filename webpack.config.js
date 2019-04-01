@@ -1,10 +1,10 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  entry: './src/form.js',
+  entry: './src/Form.vue',
   output: {
-    filename: 'main.js',
+    filename: 'vue-form-schema.js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {

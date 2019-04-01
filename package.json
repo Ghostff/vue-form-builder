@@ -1,23 +1,47 @@
 {
-  "name": "form-builder",
+  "name": "vue-form-schema",
   "version": "1.0.0",
-  "description": "",
-  "private": true,
+  "description": "Two ways drag and drop form creator for Vue.",
+  "main": "./dist/vue-form-schema.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "build": "webpack"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ghostff/vue-form-builder.git"
+  },
+  "keywords": [
+    "vue-form-builder",
+    "2-ways-form-builder",
+    "vue",
+    "vue-form",
+    "vuejs",
+    "form",
+    "generator",
+    "vue-form-schema",
+    "schema"
+  ],
+  "author": "ghostff",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^3.12.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Ghostff/vue-form-builder/issues"
+  },
+  "homepage": "https://github.com/Ghostff/vue-form-builder#readme",
+  "files": [
+    "dist/*"
+  ]
 }
