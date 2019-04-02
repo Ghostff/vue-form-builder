@@ -1,5 +1,3 @@
-const form = require("./Form.vue").default;
+import VueFormSchema from './VueFormSchema.vue';
 
-module.exports = {
-  form,
-};
+export default VueFormSchema;
