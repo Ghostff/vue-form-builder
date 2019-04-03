@@ -6,7 +6,8 @@ module.exports = {
   mode: 'production',
   output: {
     filename: 'vue-form-schema.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'umd',
   },
   resolve: {
     alias: {

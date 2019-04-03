@@ -559,7 +559,7 @@
 
     export default {
         props: ['config', 'import', 'move'],
-        name: "Index",
+        name: "vue-form-schema",
         data() {
             return {
                 templates: {
