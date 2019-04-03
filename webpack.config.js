@@ -1,7 +1,5 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -30,15 +28,6 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // you can specify a publicPath here
-              // by default it use publicPath in webpackOptions.output
-              publicPath: './dist'
-            }
-          },
-
         ]
       }
     ]
@@ -46,9 +35,5 @@ module.exports = {
   plugins: [
     // make sure to include the plugin!
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      path: path.resolve(__dirname, 'dist')
-    })
   ]
 };
