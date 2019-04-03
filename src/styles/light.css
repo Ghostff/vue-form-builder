@@ -1,7 +1,7 @@
 #vue-form-gen-main {
     position: relative;
     width: 960px;
-    margin: 0 auto 10px auto;
+    margin: 20px auto 10px auto;
     font-family: monospace;
 }
 .vue-form-gen-action, .vue-form-gen-element {

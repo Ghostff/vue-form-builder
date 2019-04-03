@@ -1,10 +1,10 @@
-html {
+html, body {
     background-color: #17181c;
 }
 #vue-form-gen-main {
     position: relative;
     width: 960px;
-    margin: 0 auto 10px auto;
+    margin: 20px auto 10px auto;
     font-family: monospace;
     color: #e8e7e3;
 }
@@ -27,7 +27,7 @@ html {
     height: 30px;
     color: #e8e7e3;
 }
-select {
+#vue-form-gen-main select {
     background-color: rgb(23, 24, 28);
     border:1px solid rgb(61, 61, 61);
     color: #e8e7e3;
@@ -76,7 +76,7 @@ select {
 .vue-form-gen-rendered {
     margin-bottom: 10px;
 }
-fieldset {
+#vue-form-gen-main fieldset {
     border:1px solid rgb(61, 61, 61);
     margin-bottom: 10px;
 }
@@ -109,11 +109,8 @@ fieldset {
     padding: 10px;
     border-radius:5px;
     background-color: rgb(31, 34, 40);
-    white-space: pre-wrap;       /* Since CSS 2.vue-form-gen-1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.vue-form-gen-5+ */
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
-
-
