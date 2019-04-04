@@ -3,7 +3,7 @@ html, body {
 }
 #vue-form-gen-main {
     position: relative;
-    width: 960px;
+    width: 1060px;
     margin: 20px auto 10px auto;
     font-family: monospace;
     color: #e8e7e3;
@@ -33,19 +33,20 @@ html, body {
     color: #e8e7e3;
     height:30px;
 }
-#vue-form-gen-main button {
+.vue-form-gen-button {
     padding: 7px 10px;
     border-radius: 4px;
     background-color: rgb(27, 29, 33);
     border:1px solid rgb(61, 61, 61);
     cursor: pointer;
     color: #e8e7e3;
+    margin-left: 5px;
 }
 .vue-form-gen-element input:not([type="radio"]):not([type='checkbox']), .vue-form-gen-element select, .vue-form-gen-element button, .vue-form-gen-element textarea {
     width: 100%;
     background-color: #17181c;
 }
-.vue-form-gen-builder, .vue-form-gen-element-list {
+.vue-form-gen-builder, .vue-form-gen-element-list, .vue-form-gen-builder-restore {
     display: inline-block;
     vertical-align:top
 }
@@ -104,6 +105,16 @@ html, body {
     border-radius: 3px;
     font-size: 14px;
     cursor: grab;
+}
+.vue-form-gen-builder-restore {
+    width: 200px;
+}
+.vue-form-gen-builder-restore .vue-form-gen-button {
+    padding: 2px 5px;
+    border-radius: 0;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 5px;
 }
 .vue-form-gen-export pre {
     padding: 10px;

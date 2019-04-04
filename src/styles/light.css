@@ -1,6 +1,6 @@
 #vue-form-gen-main {
     position: relative;
-    width: 960px;
+    width: 1060px;
     margin: 20px auto 10px auto;
     font-family: monospace;
 }
@@ -22,17 +22,18 @@
     border: 1px solid #cccccc;
     height: 30px;
 }
-#vue-form-gen-main button {
+.vue-form-gen-button {
     padding: 7px 10px;
     border-radius: 4px;
     background-color: #efefef;
     border: 1px solid #cccccc;
     cursor: pointer;
+    margin-left: 5px;
 }
 .vue-form-gen-element input:not([type="radio"]):not([type='checkbox']), .vue-form-gen-element select, .vue-form-gen-element button, .vue-form-gen-element textarea {
     width: 100%;
 }
-.vue-form-gen-builder, .vue-form-gen-element-list {
+.vue-form-gen-builder, .vue-form-gen-element-list, .vue-form-gen-builder-restore {
     display: inline-block;
     vertical-align:top
 }
@@ -91,14 +92,22 @@
     font-size: 14px;
     cursor: grab;
 }
+.vue-form-gen-builder-restore {
+    width: 200px;
+}
+.vue-form-gen-builder-restore .vue-form-gen-button {
+    padding: 2px 5px;
+    border-radius: 0;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 5px;
+}
 .vue-form-gen-export pre {
     padding: 10px;
     border-radius:5px;
     background-color: #dddddd;
-    white-space: pre-wrap;       /* Since CSS 2.vue-form-gen-1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.vue-form-gen-5+ */
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
-
-

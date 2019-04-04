@@ -1,10 +1,16 @@
 <template>
     <div id="vue-form-gen-main">
+        <div class="vue-form-gen-builder-restore">
+            <fieldset>
+                <legend>Restore:</legend>
+                <button v-for="(e, i) in deleted" :key="`restore-${i}`" @click="restore(e)" class="vue-form-gen-button">{{ e.type }} ⋙</button>
+            </fieldset>
+        </div>
 <!--        Side(Left) Container-->
-        <div ref="display" class="vue-form-gen-builder list" style="">
+        <div ref="display" class="vue-form-gen-builder list">
 
             <template v-for="(e, i) in listed">
-                <fieldset>
+                <fieldset v-if="! removed(i, e.type)">
                     <legend>{{ e.type}}:</legend>
 
                     <component class="vue-form-gen-element" :is="defaultConfig.containerTag" ref="exportable">
@@ -46,6 +52,8 @@
 
                     <!--Action Icons-->
                     <div class="vue-form-gen-action">
+
+                        <span @click="remove(i, e.type)" :style="action.remove.style" title="Delete Element" :class="action.remove.class" v-html="action.remove.icon"></span>
 
                         <!--Hide/Show Icon on each element-->
                         <span @click="toggle[i] = true" v-show="! toggle[i]" :style="action.toggle.style" :class="action.toggle.class" v-html="action.toggle.show"></span>
@@ -562,6 +570,7 @@
         name: "vue-form-schema",
         data() {
             return {
+                deleted: [],
                 templates: {
                     text: 'input',
                     file: 'input',
@@ -600,6 +609,7 @@
                         }
                     },
                     action: {
+                        remove: {icon: '⊗', class: null, style: 'font-size:16px;cursor:pointer;color:red'},
                         move: {up: '⇧', down: '⇩', class: null, style: 'font-size:16px;cursor:pointer;'},
                         toggle: {show: '⊕', hide: '⊖', class: null, style: 'font-size:16px;cursor:pointer;'}
                     },
@@ -618,7 +628,7 @@
                     containerTag: 'div'
                 },
                 listed: [],
-                exported: null
+                exported: null,
             }
         },
         computed: {
@@ -718,12 +728,12 @@
 
             this.$refs.draggable.forEach(e => {
                 e.addEventListener('dragstart', e => {
-                    display.classList.add("drag-start");
+                    display.classList.add('vue-form-gen-drag-start');
                     e.dataTransfer.setData("text", e.target.getAttribute('data-id'));
                 }, false);
 
                 e.addEventListener('dragend', e => {
-                    display.classList.remove("drag-start");
+                    display.classList.remove('vue-form-gen-drag-start');
                 }, false);
             });
 
@@ -797,7 +807,6 @@
              * @param {string} type The extraction type(html|json)
              */
             extract(type) {
-
                 if (type === 'html') {
                     let html = '';
                     this.$refs.exportable.forEach(dom => html += dom.outerHTML.replace('<!---->', '') + "\n");
@@ -805,7 +814,21 @@
                 } else {
                     this.exported = JSON.stringify(this.listed)+ "\n";
                 }
-            }
+            },
+
+            remove(index, type) {
+                // We are casting index to string because there was an issue that causes index to be treated
+                // as undefined.
+                this.deleted.push({i: index.toString(), type});
+            },
+            removed(index, type) {
+                // We are casting index to string because there was an issue that causes index to be treated
+                // as undefined.
+                return this.deleted.find(e => e.i === index.toString() && e.type === type);
+            },
+            restore(index) {
+                this.deleted.splice(this.deleted.indexOf(index), 1);
+            },
 
         }
     }
