@@ -812,24 +812,40 @@
                     this.$refs.exportable.forEach(dom => html += dom.outerHTML.replace('<!---->', '') + "\n");
                     this.exported = html;
                 } else {
-                    this.exported = JSON.stringify(this.listed)+ "\n";
+                    this.exported = JSON.stringify(this.listed.filter((e, i) => ! this.removed(i, e.type))) + "\n";
                 }
             },
-
+            /**
+             * Removes an element.
+             *
+             * @param index The element index.
+             * @param type  The element type
+             */
             remove(index, type) {
                 // We are casting index to string because there was an issue that causes index to be treated
                 // as undefined.
                 this.deleted.push({i: index.toString(), type});
             },
+            /**
+             * Checks if element was removed.
+             *
+             * @param index The element index.
+             * @param type  The element type
+             * @return boolean
+             */
             removed(index, type) {
                 // We are casting index to string because there was an issue that causes index to be treated
                 // as undefined.
                 return this.deleted.find(e => e.i === index.toString() && e.type === type);
             },
+            /**
+             * Restores a deleted element.
+             *
+             * @param index
+             */
             restore(index) {
                 this.deleted.splice(this.deleted.indexOf(index), 1);
             },
-
         }
     }
 </script>
