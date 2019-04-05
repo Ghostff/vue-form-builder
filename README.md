@@ -25,7 +25,7 @@ export default {
 ```js
 <vue-form-schema :config="{}" :import="[]" :template="{}"></vue-form-schema>
 ```
-#Import
+### Import
 Buids a form based on previosly exported JSON.
 ```js
 <div id="app">
