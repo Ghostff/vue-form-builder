@@ -566,12 +566,12 @@
     ];
 
     export default {
-        props: ['config', 'import', 'move'],
+        props: ['config', 'import', 'move', 'template'],
         name: "vue-form-schema",
         data() {
             return {
                 deleted: [],
-                templates: {
+                templates: Object.assign({}, {
                     text: 'input',
                     file: 'input',
                     email: 'input',
@@ -594,7 +594,7 @@
                     },
                     paragraph: 'p',
                     label: 'label',
-                },
+                }, this.template),
                 toggle: {},
                 defaultConfig: {
                     hide: {},
@@ -710,7 +710,7 @@
                     class: this.defaultConfig.class[type] || 'input'
                 };
 
-                this.$set(this.defaultConfig.hide, type, []);
+                this.$set(this.defaultConfig.hide, type, this.defaultConfig.hide[type] || []);
                 this.$set(this.toggle, size, false);
                 this.listed.push(data);
 
