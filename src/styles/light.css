@@ -22,12 +22,15 @@
     border: 1px solid #cccccc;
     height: 30px;
 }
-.vue-form-gen-button {
+#vue-form-gen-main button {
     padding: 7px 10px;
     border-radius: 4px;
-    background-color: #efefef;
+    background-color: #ffffff;
     border: 1px solid #cccccc;
     cursor: pointer;
+    margin-left: 5px;
+}
+.vue-form-gen-button {
     margin-left: 5px;
 }
 .vue-form-gen-element input:not([type="radio"]):not([type='checkbox']), .vue-form-gen-element select, .vue-form-gen-element button, .vue-form-gen-element textarea {
