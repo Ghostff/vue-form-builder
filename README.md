@@ -1,7 +1,7 @@
 # Vue Form Schema
 A two ways drag and drop form builder for Vue.
 ```js
-npm install --save-dev vue-form-scheam
+npm install --save-dev vue-form-schema
 ```
 ### Using form schema
 This package comes in with a default `dark.css` and `light.css` theme and can always be overriden with your custom style.
