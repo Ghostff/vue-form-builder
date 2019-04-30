@@ -90,7 +90,7 @@
                             <template v-if="hide[e.type].indexOf('name') < 0">
                                <div class="vue-form-gen-rendered">
                                    <span>Name</span>
-                                   <input type="text" v-model="e.name">
+                                   <input type="text" v-model="e.name" @keyup="resolveLP(e)">
                                </div>
                             </template>
 
@@ -565,6 +565,7 @@
         {name: 'Zambia', value: 'ZM'},
         {name: 'Zimbabwe', value: 'ZW'}
     ];
+    const defaulted = {label: null, placeholder: null};
 
     export default {
         props: ['config', 'import', 'move', 'template'],
@@ -788,6 +789,29 @@
                 });
 
                 return attr;
+            },
+            /**
+             * Populates the field placeholder and label with name.
+             *
+             * @param {Object} e    element data to extract attributes from.
+             */
+            resolveLP(e) {
+                let val = null;
+                if (e.name) {
+                    val = e.name.split(/-|_| /).map(e => {
+                        if (e.length) {
+                            return e[0].toUpperCase() + e.slice(1)
+                        }
+                    }).join(' ');
+                }
+                if (e.label.text === defaulted.label) {
+                    e.label.text = val;
+                    defaulted.label = val;
+                }
+                if (e.placeholder === defaulted.placeholder) {
+                    e.placeholder = val;
+                    defaulted.placeholder = val;
+                }
             },
             /**
              * Moves element to a specific direction(Up or Down)
