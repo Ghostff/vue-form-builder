@@ -594,6 +594,8 @@
                     },
                     paragraph: 'p',
                     label: 'label',
+                    date: 'input',
+                    time: 'input',
                 }, this.template),
                 toggle: {},
                 defaultConfig: {
