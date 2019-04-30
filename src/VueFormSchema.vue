@@ -34,11 +34,12 @@
                             </comment>
                         </template>
 
+                        <!-- Button option -->
                         <template v-else-if="e.type === 'button'">
-                            <comment :is="templates[e.type]" v-bind="attributes(e)" v-html="e.content">
-                            </comment>
+                            <comment :is="templates[e.type]" v-bind="attributes(e)" v-html="e.content"></comment>
                         </template>
 
+                        <!-- P or Label option -->
                         <template v-else-if="e.type === 'paragraph' || e.type === 'label'">
                             <comment :is="templates[e.type]" v-bind="attributes(e)" v-html="e.content"></comment>
                         </template>
@@ -623,9 +624,9 @@
                         add: {
                             style: 'margin-top:10px'
                         },
-                      remove: {
-                        style: 'margin-top:10px'
-                      }
+                        remove: {
+                            style: 'margin-top:10px'
+                        }
                     },
                     containerTag: 'div'
                 },
@@ -648,16 +649,16 @@
             }
         },
         created() {
-          this.defaultConfig = Object.assign({}, this.defaultConfig, this.config);
-          // If importing
-          if (Array.isArray(this.import)) {
-              // populate hide field.
-              this.import.forEach((e, i) => {
-                  this.$set(this.defaultConfig.hide, e.type, []);
-                  this.$set(this.toggle, i, false);
-              });
-              this.listed = this.import;
-          }
+            this.defaultConfig = Object.assign({}, this.defaultConfig, this.config);
+            // If importing
+            if (Array.isArray(this.import)) {
+                // populate hide field.
+                this.import.forEach((e, i) => {
+                    this.$set(this.defaultConfig.hide, e.type, []);
+                    this.$set(this.toggle, i, false);
+                });
+                this.listed = this.import;
+            }
         },
         mounted() {
 
@@ -748,41 +749,43 @@
              */
             attributes(e) {
                 let attr = {};
-              Object.keys(e).forEach(name => {
-                  // we dont want to add type="select" to select option field
-                  if ((name === 'type' && e.type === 'select') || (name === 'content') || (name === 'buttonType' && e.type !== 'button')) {
-                      return;
-                  }
-
-                if (name === 'additionalAttr') {
-                  e.additionalAttr.forEach(data => {
-                    attr[data.name] = data.value;
-                  });
-                  return
-                }
-
-                // dont add attributes that is null or not declared.
-                if (e[name] !== null && e[name] !== undefined && ['label', 'options', 'useName'].indexOf(name) < 0) {
-
-                  // we dont need to set a value for boolean attributes.
-                  // eg required doesnt need to be required="true"
-                  if ((typeof e[name] === 'boolean')) {
-                    if (e[name]) {
-                      // eg: required
-                      attr[name] = '';
+                Object.keys(e).forEach(name => {
+                    // we dont want to add type="select" to select option field
+                    if ((name === 'type' && e.type === 'select')
+                      || (name === 'content')
+                      || (name === 'buttonType' && e.type !== 'button')
+                      || (name === 'type' && e.type === 'textarea')) {
+                        return;
                     }
-                  }
-                  // since type is a generic attribute the most of the project relys on
-                    // when we create a button we want to be able to change the type attribute
-                    // without modifying the generic type, So we set the type attribute using buttonType
-                  else if (name === 'buttonType' && e.type === 'button') {
-                    attr['type'] = e[name];
-                  } else {
-                    // eg:  placeholder="...";
-                    attr[name] = e[name];
-                  }
-                }
-              });
+                    if (name === 'additionalAttr') {
+                        e.additionalAttr.forEach(data => {
+                            attr[data.name] = data.value;
+                        });
+                        return
+                    }
+
+                    // dont add attributes that is null or not declared.
+                    if (e[name] !== null && e[name] !== undefined && ['label', 'options', 'useName'].indexOf(name) < 0) {
+
+                        // we dont need to set a value for boolean attributes.
+                        // eg required doesnt need to be required="true"
+                        if ((typeof e[name] === 'boolean')) {
+                            if (e[name]) {
+                                // eg: required
+                                attr[name] = '';
+                            }
+                        }
+                        // since type is a generic attribute the most of the project relys on
+                        // when we create a button we want to be able to change the type attribute
+                        // without modifying the generic type, So we set the type attribute using buttonType
+                        else if (name === 'buttonType' && e.type === 'button') {
+                            attr['type'] = e[name];
+                        } else {
+                            // eg:  placeholder="...";
+                            attr[name] = e[name];
+                        }
+                    }
+                });
 
                 return attr;
             },
@@ -814,7 +817,7 @@
                     this.$refs.exportable.forEach(dom => html += dom.outerHTML.replace('<!---->', '') + "\n");
                     this.exported = html;
                 } else {
-                    this.exported = JSON.stringify(this.listed.filter((e, i) => ! this.removed(i, e.type))) + "\n";
+                    this.exported = JSON.stringify(this.listed.filter((e, i) => !this.removed(i, e.type))) + "\n";
                 }
             },
             /**
