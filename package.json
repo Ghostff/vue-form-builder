@@ -1,6 +1,6 @@
 {
   "name": "vue-form-schema",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Two ways drag and drop form creator for Vue.",
   "main": "./dist/vue-form-schema.js",
   "scripts": {
@@ -26,8 +26,8 @@
   "author": "ghostff",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
     "uglifyjs-webpack-plugin": "^2.1.2",
@@ -35,8 +35,8 @@
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
   },
   "bugs": {
     "url": "https://github.com/Ghostff/vue-form-builder/issues"
