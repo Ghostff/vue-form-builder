@@ -309,9 +309,26 @@
                 {{ el }}
             </div>
             <div class="vue-form-gen-export-btn">
-                <button class="vue-form-gen-button" @click="extract('html')">Extract Html</button>
-                <button class="vue-form-gen-button" @click="extract('json')">Extract JSON</button>
-                <button class="vue-form-gen-button" @click="editor = !editor">View</button>
+                <button
+                        :class="defaultConfig.buttons.html.class"
+                        @click="extract('html')"
+                        v-html="defaultConfig.buttons.html.content"
+                        v-if="defaultConfig.buttons.html.show"
+                ></button>
+
+                <button
+                        :class="defaultConfig.buttons.json.class"
+                        @click="extract('json')"
+                        v-html="defaultConfig.buttons.json.content"
+                        v-if="defaultConfig.buttons.json.show"
+                ></button>
+
+                <button
+                        :class="defaultConfig.buttons.view.class"
+                        @click="toggleEditor"
+                        v-html="defaultConfig.buttons.view.content"
+                        v-if="defaultConfig.buttons.view.show"
+                ></button>
             </div>
         </div>
 
@@ -631,7 +648,8 @@
                         }
                     },
                     showLabel: true,
-                    container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}}
+                    container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}},
+                    buttons: null,
                 },
                 listed: [],
                 exported: null,
@@ -653,6 +671,32 @@
             }
         },
         created() {
+            if (this.config.buttons) {
+                this.config.buttons.html = Object.assign(
+                  {},
+                  {class: 'vue-form-gen-button', show: true, click: null, content: 'Extract Html'},
+                  this.config.buttons.html || {}
+                );
+
+                this.config.buttons.json = Object.assign(
+                  {},
+                  {class: 'vue-form-gen-button', show: true, click: null, content: 'Extract JSON'},
+                  this.config.buttons.json || {}
+                );
+
+                this.config.buttons.view = Object.assign(
+                  {},
+                  {class: 'vue-form-gen-button', show: true, click: null, content: 'View'},
+                  this.config.buttons.view || {}
+                )
+            } else {
+                this.config.button = {
+                    html: {class: 'vue-form-gen-button', show: true, click: null, content: 'Extract Html'},
+                    json: {class: 'vue-form-gen-button', show: true, click: null, content: 'Extract JSON'},
+                    view: {class: 'vue-form-gen-button', show: true, click: null, content: 'View'},
+                }
+            }
+
             this.defaultConfig = Object.assign({}, this.defaultConfig, this.config);
             // If importing
             if (Array.isArray(this.import)) {
@@ -746,6 +790,15 @@
 
         },
         methods: {
+            /**
+             * Toggle between editor and preview.
+             */
+            toggleEditor() {
+                this.editor = ! this.editor;
+                if (this.defaultConfig.buttons.view.click) {
+                    this.defaultConfig.buttons.view.click(this.editor);
+                }
+            },
             /**
              * Create attributes for each element.
              *
@@ -850,9 +903,15 @@
                 if (type === 'html') {
                     let html = '';
                     this.$refs.exportable.forEach(dom => html += dom.outerHTML.replace('<!---->', '') + "\n");
+                    if (this.defaultConfig.buttons.html.click) {
+                        this.defaultConfig.buttons.html.click(html);
+                    }
                     this.exported = html;
                 } else {
                     this.exported = JSON.stringify(this.listed.filter((e, i) => !this.removed(i, e.type))) + "\n";
+                    if (this.defaultConfig.buttons.json.click) {
+                        this.defaultConfig.buttons.json.click(this.exported);
+                    }
                 }
             },
             /**

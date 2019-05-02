@@ -115,6 +115,11 @@ Default config:
         }
     },
     showLabel: true,
-    container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}}
+    container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}},
+    button: {
+        html: {class: 'vue-form-gen-button', show: true, click: null, content: 'Extract Html'},
+        json: {class: 'vue-form-gen-button', show: true, click: null, content: 'Extract JSON'},
+        view: {class: 'vue-form-gen-button', show: true, click: null, content: 'View'},
+    }
 }
 ```
