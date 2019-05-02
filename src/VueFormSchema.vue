@@ -10,12 +10,12 @@
         <div ref="display" class="vue-form-gen-builder list">
 
             <template v-for="(e, i) in listed">
-                <fieldset v-if="! removed(i, e.type)">
-                    <legend>{{ e.type}}:</legend>
+                <component v-if="! removed(i, e.type)" :is="editor ? 'fieldset': 'span'">
+                    <legend v-if="editor">{{ e.type}}:</legend>
 
-                    <component class="vue-form-gen-element" :is="defaultConfig.containerTag" ref="exportable">
+                    <component :style="editor ? '' : 'width:98%'" :is="defaultConfig.container.tag" v-bind="defaultConfig.container.attributes" ref="exportable">
 
-                        <label v-if="e.label.text" :class="e.label.class" v-html="e.label.text"></label>
+                        <label v-if="defaultConfig.showLabel && e.label.text" :class="e.label.class" v-html="e.label.text"></label>
 
                         <!--Radio options-->
                         <template v-if="e.type === 'radio' || e.type === 'checkbox'">
@@ -25,7 +25,7 @@
                             </template>
                         </template>
 
-                        <!--Selection option-->
+                        <!--Selection option -->
                         <template v-else-if="e.type === 'select'">
                             <comment :is="templates[e.type].select" v-bind="attributes(e)">
                                 <component v-for="(el, index) in e.options" :key="`radio-${i}-${index}`" :is="templates[e.type].option" :value="e.useName ? el.value : el.name">
@@ -52,7 +52,7 @@
                     </component>
 
                     <!--Action Icons-->
-                    <div class="vue-form-gen-action">
+                    <div v-if="editor" class="vue-form-gen-action">
 
                         <span @click="remove(i, e.type)" :style="action.remove.style" title="Delete Element" :class="action.remove.class" v-html="action.remove.icon"></span>
 
@@ -78,7 +78,7 @@
                     </div>
 
                     <!--Attributes Helper. Stays hidden unless toggled-->
-                    <div v-show="toggle[i]" style="margin-top:10px;display:block;padding:10px;border-top:1px solid #ddd">
+                    <div v-if="editor" v-show="toggle[i]" style="margin-top:10px;display:block;padding:10px;border-top:1px solid #ddd">
 
                         <template v-if="e.type === 'paragraph' || e.type === 'label'">
                             <label> Content
@@ -90,7 +90,7 @@
                             <template v-if="hide[e.type].indexOf('name') < 0">
                                <div class="vue-form-gen-rendered">
                                    <span>Name</span>
-                                   <input type="text" v-model="e.name" @keyup="resolveLP(e)">
+                                   <input type="text" v-model="e.name" @keyup="resolveLP(e, i)">
                                </div>
                             </template>
 
@@ -293,7 +293,7 @@
 
                     </div>
 
-                </fieldset>
+                </component>
             </template>
 
             <template v-if="exported">
@@ -311,6 +311,7 @@
             <div class="vue-form-gen-export-btn">
                 <button class="vue-form-gen-button" @click="extract('html')">Extract Html</button>
                 <button class="vue-form-gen-button" @click="extract('json')">Extract JSON</button>
+                <button class="vue-form-gen-button" @click="editor = !editor">View</button>
             </div>
         </div>
 
@@ -565,7 +566,7 @@
         {name: 'Zambia', value: 'ZM'},
         {name: 'Zimbabwe', value: 'ZW'}
     ];
-    const defaulted = {label: null, placeholder: null};
+    const defaulted = {};
 
     export default {
         props: ['config', 'import', 'move', 'template'],
@@ -629,10 +630,12 @@
                             style: 'margin-top:10px'
                         }
                     },
-                    containerTag: 'div'
+                    showLabel: true,
+                    container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}}
                 },
                 listed: [],
                 exported: null,
+                editor: true
             }
         },
         computed: {
@@ -793,9 +796,10 @@
             /**
              * Populates the field placeholder and label with name.
              *
-             * @param {Object} e    element data to extract attributes from.
+             * @param {Object} e    Element data to extract attributes from.
+             * @param index         The index of the object.
              */
-            resolveLP(e) {
+            resolveLP(e, index) {
                 let val = null;
                 if (e.name) {
                     val = e.name.split(/-|_| /).map(e => {
@@ -804,13 +808,20 @@
                         }
                     }).join(' ');
                 }
-                if (e.label.text === defaulted.label) {
-                    e.label.text = val;
-                    defaulted.label = val;
+                const key = index + e.type;
+                if (defaulted[key] === undefined) {
+                    defaulted[key] = {label: null, placeholder: null};
                 }
-                if (e.placeholder === defaulted.placeholder) {
+                const def = defaulted[key];
+
+                if (e.label.text === def.label) {
+                    e.label.text = val;
+                    def.label = val;
+                }
+
+                if (e.placeholder === def.placeholder) {
                     e.placeholder = val;
-                    defaulted.placeholder = val;
+                    def.placeholder = val;
                 }
             },
             /**

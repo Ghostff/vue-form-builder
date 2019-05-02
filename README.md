@@ -77,10 +77,11 @@ The default component for each of the element type. Eg
 | Name | Description | Example |
 | ------ | ------ | ------ |
 | hide | Element attributes to hide |`hide: {text: ['required', 'name']}` |
-| class | Element attributes default class |`class: {select: 'input select class'}` |
+| class | Element attributes default class | `class: {select: 'input select class'}` |
 | action | Action attributes config | `action: {remove: {icon: 'X'}}` |
-| additional | Additional attributes config| `additional: {add: {class: 'add-new-attr-btn'}}`
-| containerTag | Each element wraper | `containerTag: 'span'`
+| additional | Additional attributes config| `additional: {add: {class: 'add-new-attr-btn'}}` |
+| showLabel | Show label field. | `showLabel: true` |
+| container | Each element wrapper | `container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}}`
 
 Default config:
 ```js
