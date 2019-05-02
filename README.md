@@ -114,6 +114,7 @@ Default config:
             style: 'margin-top:10px'
         }
     },
-    containerTag: 'div'
+    showLabel: true,
+    container: {tag: 'div', attributes: {class: 'vue-form-gen-element'}}
 }
 ```
