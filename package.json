@@ -1,6 +1,6 @@
 {
   "name": "vue-form-schema",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Two ways drag and drop form creator for Vue.",
   "main": "./dist/vue-form-schema.js",
   "scripts": {
